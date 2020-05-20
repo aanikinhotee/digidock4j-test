@@ -104,6 +104,7 @@ var hwcrypto = function hwcrypto() {
             });
         };
         this.getCertificate = function(options) {
+            console.log("this.getCertificate = function(options)");
             if (options && options.lang) {
                 p.pluginLanguage = options.lang;
             }
@@ -273,6 +274,7 @@ var hwcrypto = function hwcrypto() {
         });
     };
     fields.getCertificate = function(options) {
+      console.log("js/hwcrypto.getCertificate");
         if (typeof options !== "object") {
             _debug("getCertificate options parameter must be an object");
             return Promise.reject(new Error(INVALID_ARGUMENT));
@@ -281,10 +283,14 @@ var hwcrypto = function hwcrypto() {
             options.lang = "en";
         }
         return _autodetect().then(function(result) {
-            if (location.protocol !== "https:" && location.protocol !== "file:") {
-                return Promise.reject(new Error(NOT_ALLOWED));
+            console.log("return _autodetect().then(function(result) {");
+            if (location.protocol !== "http:" && location.protocol !== "file:") {
+              console.log("if (location.protocol !== \"http:\" && location.protocol !=");
+              return Promise.reject(new Error(NOT_ALLOWED));
             }
+            console.log("jjj");
             return _backend.getCertificate(options).then(function(certificate) {
+                console.log("hhh");
                 if (certificate.hex && !certificate.encoded) certificate.encoded = _hex2array(certificate.hex);
                 return certificate;
             });

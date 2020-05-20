@@ -119,6 +119,7 @@ function sign() {
     console.log("sign js");
     var cert;
     window.hwcrypto.getCertificate({lang: 'en'}).then(function(certificate) {
+        console.log("get cert then");
         cert = certificate;
         return fetchHash(certificate.hex);
     }).then(function(digest) {
