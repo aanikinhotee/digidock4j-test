@@ -3,6 +3,7 @@ import {FileService} from './file.service';
 import {NgForm} from '@angular/forms';
 import {HttpEventType} from '@angular/common/http';
 import {Router} from '@angular/router';
+declare const sign: any;
 
 
 @Component({
@@ -90,5 +91,9 @@ export class AppComponent {
 
   private enableSign() {
     this.signButton = true;
+  }
+
+  sign() {
+    sign();
   }
 }
