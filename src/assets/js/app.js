@@ -108,7 +108,7 @@ post = function(url, data) {
 };
 
 fetchHash = function(certInHex) {
-    return post("generateHash", {certInHex:certInHex})
+    return post("http://localhost:8080/generateHash", {certInHex:certInHex})
 };
 
 createContainer = function(signatureInHex) {
@@ -123,11 +123,14 @@ function sign() {
         cert = certificate;
         return fetchHash(certificate.hex);
     }).then(function(digest) {
+        console.log("then(function(digest) {");
         return window.hwcrypto.sign(cert, {type: 'SHA-256', hex: digest.hex}, {lang: 'en'});
     }).then(function(signature) {
-        return createContainer(signature.hex);
+      console.log("then(function(signature) {");
+      return createContainer(signature.hex);
     }).then(function(result) {
-        showDownloadSection();
+      console.log("then(function(result) {");
+      showDownloadSection();
         console.log("container is ready for download");
     });
 };

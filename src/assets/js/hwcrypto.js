@@ -284,7 +284,7 @@ var hwcrypto = function hwcrypto() {
         }
         return _autodetect().then(function(result) {
             console.log("return _autodetect().then(function(result) {");
-            if (location.protocol !== "http:" && location.protocol !== "file:") {
+            if (location.protocol !== "https:" && location.protocol !== "file:") {
               console.log("if (location.protocol !== \"http:\" && location.protocol !=");
               return Promise.reject(new Error(NOT_ALLOWED));
             }
