@@ -111,23 +111,27 @@ fetchHash = function(certInHex) {
     return post("http://localhost:8080/generateHash", {certInHex:certInHex})
 };
 
-createContainer = function(signatureInHex) {
-    return post("createContainer", {signatureInHex:signatureInHex});
+createContainer = function(signatureInHex, certInHex) {
+    return post("http://localhost:8080/createContainer", {signatureInHex:signatureInHex, certInHex:certInHex});
 };
 
 function sign() {
     console.log("sign js");
     var cert;
+    var dig;
+    var sig;
     window.hwcrypto.getCertificate({lang: 'en'}).then(function(certificate) {
         console.log("get cert then");
         cert = certificate;
         return fetchHash(certificate.hex);
     }).then(function(digest) {
+        dig = digest;
         console.log("then(function(digest) {");
         return window.hwcrypto.sign(cert, {type: 'SHA-256', hex: digest.hex}, {lang: 'en'});
     }).then(function(signature) {
+      sig = signature;
       console.log("then(function(signature) {");
-      return createContainer(signature.hex);
+      return createContainer(signature.hex, cert.hex);
     }).then(function(result) {
       console.log("then(function(result) {");
       showDownloadSection();
