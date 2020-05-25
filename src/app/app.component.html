@@ -295,29 +295,6 @@
   }
 </style>
 <head>
-<script>
-  $(document).on("click", "#signButton", function(event) {
-    event.preventDefault();
-    console.log("sign button pressed");
-    sign();
-  });
-
-  sign = function() {
-    console.log("sign()");
-    var cert;
-    window.hwcrypto.getCertificate({lang: 'en'}).then(function(certificate) {
-      cert = certificate;
-      return fetchHash(certificate.hex);
-    }).then(function(digest) {
-      return window.hwcrypto.sign(cert, {type: 'SHA-256', hex: digest.hex}, {lang: 'en'});
-    }).then(function(signature) {
-      return createContainer(signature.hex);
-    }).then(function(result) {
-      showDownloadSection();
-      console.log("container is ready for download");
-    });
-  };
-</script>
   <title>Page</title>
 </head>
 <div class="content" role="main">
@@ -343,7 +320,7 @@
 
   </form>
 
-  <form hidden id="fileUpload" action="http://localhost:8080/upload" method="post">
+  <form hidden id="fileUpload" action="/upload" method="post">
     <div class="form-group">
       <div class="input-group">
                                     <span class="input-group-btn">
@@ -365,7 +342,7 @@
   <div class="row">
     <div class="col-md-7">
       <h3>2. Sign</h3>
-      <button class="btn" (click)="sign()" id="signButton" [disabled]="!signButton" type="button" disabled="disabled">Sign()</button>
+      <button class="btn" id="signButton" [disabled]="!signButton" type="button" disabled="disabled">Sign()</button>
     </div>
   </div>
   <div class="row">
