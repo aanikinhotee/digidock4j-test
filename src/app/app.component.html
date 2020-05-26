@@ -305,7 +305,7 @@
     <input type="file" #fileUpload id="file_Upload" name="fileUpload" multiple="multiple" accept="text/*" style="display:none;" />
 
     <div>
-      <label i18n>file</label><br>
+      <h3>1. file</h3>
       <button (click)="onPhotoSelection()" i18n *ngIf="!previewUrl">Select file</button>
 
       <div *ngIf="fileUploadProgress" i18n>
