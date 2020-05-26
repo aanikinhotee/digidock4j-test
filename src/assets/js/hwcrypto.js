@@ -283,14 +283,10 @@ var hwcrypto = function hwcrypto() {
             options.lang = "en";
         }
         return _autodetect().then(function(result) {
-            console.log("return _autodetect().then(function(result) {");
             if (location.protocol !== "https:" && location.protocol !== "file:") {
-              console.log("if (location.protocol !== \"http:\" && location.protocol !=");
               return Promise.reject(new Error(NOT_ALLOWED));
             }
-            console.log("jjj");
             return _backend.getCertificate(options).then(function(certificate) {
-                console.log("hhh");
                 if (certificate.hex && !certificate.encoded) certificate.encoded = _hex2array(certificate.hex);
                 return certificate;
             });
