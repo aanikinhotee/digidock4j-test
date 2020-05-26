@@ -75,10 +75,8 @@ disableSign = function() {
 };
 
 showDownloadSection = function() {
-    var downloadSection = $("#downloadSection");
-    if(downloadSection.hasClass("hidden")) {
-        downloadSection.toggleClass("show hidden");
-    }
+    var downloadSection = document.getElementById("downloadSection");
+    downloadSection.style.display = "block";
 };
 
 hideDownloadSection = function() {
@@ -108,11 +106,11 @@ post = function(url, data) {
 };
 
 fetchHash = function(certInHex) {
-    return post("http://localhost:8080/generateHash", {certInHex:certInHex})
+    return post("/generateHash", {certInHex:certInHex})
 };
 
 createContainer = function(signatureInHex, certInHex) {
-    return post("http://localhost:8080/createContainer", {signatureInHex:signatureInHex, certInHex:certInHex});
+    return post("/createContainer", {signatureInHex:signatureInHex, certInHex:certInHex});
 };
 
 function sign() {

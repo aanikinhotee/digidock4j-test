@@ -316,7 +316,7 @@
         <button (click)="previewUrl = ''; fileData = null; files = []"> ✖ </button>
       </div>
     </div>
-    <button type="submit" style="" aria-hidden="true" (click)="onPreviewEvent(f)">send</button>
+    <button *ngIf="files.length > 0" type="submit" style="" aria-hidden="true" (click)="onPreviewEvent(f)">send</button>
 
   </form>
 
@@ -339,14 +339,14 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="signButton">
     <div class="col-md-7">
       <h3>2. Sign</h3>
       <button class="btn" id="signButton" [disabled]="!signButton" type="button" disabled="disabled">Sign()</button>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-7 hidden" id="downloadSection">
+    <div class="col-md-7 hidden" id="downloadSection" style="display: none">
       <h3>3. Download signed container</h3>
       <a href="downloadContainer" class="btn btn-success" id="downloadButton">Download</a>
     </div>

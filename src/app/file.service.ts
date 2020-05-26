@@ -25,7 +25,7 @@ export class FileService {
     const data: FormData = new FormData();
     data.append('file', file);
 
-    const newRequest = new HttpRequest('POST', environment.backend + '/upload', data, {
+    const newRequest = new HttpRequest('POST', '/upload', data, {
       reportProgress: true,
       responseType: 'text'
     });

@@ -6368,6 +6368,10 @@ button.close {
 .hidden {
   display: none !important;
 }
+
+.hidden a{
+  display: none !important;
+}
 .affix {
   position: fixed;
 }
